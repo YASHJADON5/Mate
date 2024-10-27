@@ -92,7 +92,7 @@ taskRouter.get('/projectspecifictask/:id', auth, async (req, res) => {
 
     } catch (err) {
         console.error("Error fetching tasks", err);
-        return res.status(500).json({ msg: "An error occurred while fetching tasks" });
+        return res.status(500).json({ msg: "An error occurred while fetching tasks", err:err });
     }
 });
 
