@@ -1,18 +1,18 @@
 const mongoose= require("mongoose");
 
 
-const mongooseUrl="mongodb+srv://YashJadon:Yash12345@cluster0.hnmav.mongodb.net/"
-
-function connectMongoose(){
-    
-    mongoose.connect(mongooseUrl)
-        .then(()=>{
-            console.log("connection established succesfully")
-        })
-        .catch(()=>{
-            console.log("Failed in connecting with mongo db")
-        })
-
+function connectMongoose() {
+    mongoose.connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 20000 // 20 seconds
+    })
+    .then(() => {
+        console.log("MongoDB connection established successfully");
+    })
+    .catch((err) => {
+        console.error("Failed in connecting with MongoDB:", err);
+    });
 }
 
 
