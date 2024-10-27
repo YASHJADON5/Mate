@@ -2,7 +2,7 @@ const mongoose= require("mongoose");
 
 
 function connectMongoose() {
-    mongoose.connect(process.env.MONGODB_URI, {
+    mongoose.connect(process.env.Mongo_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         serverSelectionTimeoutMS: 20000 // 20 seconds
