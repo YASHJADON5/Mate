@@ -1,25 +1,21 @@
 require('dotenv').config();
-const express= require('express')
-const mainRouter= require('./routes/index')
-const {connectMongoose}=require('./db')
+const express=require('express');
+const mainRouter=require('./routes/index');
+const { connectMongoose }=require('./db');
 
-const app= express();
+const app = express();
 
-const cors= require("cors")
+const cors = require("cors");
 
 app.use(cors());
-
 app.use(express.json());
-
-app.use('/api/v1', mainRouter);
-
+app.use('/api/v1',mainRouter);
 
 
-app.listen(3000,()=>{
-    console.log("server is listening")
-}) 
+const PORT = process.env.PORT || 3000;
 
-connectMongoose()
+app.listen(PORT,()=>{
+    console.log(`Server is listening on port ${PORT}`);
+});
 
-
-
+connectMongoose();
