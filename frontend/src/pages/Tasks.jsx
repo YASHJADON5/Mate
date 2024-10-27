@@ -26,35 +26,28 @@ function Tasks() {
     }
   }, [navigate])
 
-
- useEffect(()=>{
-  try{
-    (async()=>{
-     setLoading(true)
-    const token= localStorage.getItem('token')
-
-    const response = await axios.get(`${base_url}/api/v1/task/projectspecifictask/${id}`,{
-      headers:{
-        "authorization":`Bearer ${token}`
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true); 
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`${base_url}/api/v1/task/projectspecifictask/${id}`, {
+          headers: {
+            "authorization": `Bearer ${token}`
+          }
+        });
+        
+        setTasks(response.data); 
+      } catch (err) {
+        console.log(err); 
+      } finally {
+        setLoading(false); 
       }
-    })
-    
-    setTasks(response.data)
-    
-
-
-
+    };
   
-  })()
-  }
-  catch(err){
-   console.log(err)
-  }
-  finally{
-    setLoading(false)
-  }
-
- },[])
+    fetchData(); 
+  }, []);
+  
  console.log(tasks)
 
  const handleBack=()=>{
@@ -85,6 +78,8 @@ function Tasks() {
        {tasks.map(task => (
        <TaskCard title={task.title} key={task._id} id={task._id} description={task.description} status={task.status} date={task.startDate} />
        ))}
+
+       {tasks.length===0&&<div className='h-full w-full flex justify-center items-center text-gray-600 text-4xl font-bold'>You have not created any task yet</div>}
 
       
     </div>

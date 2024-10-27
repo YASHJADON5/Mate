@@ -28,6 +28,8 @@ function Dashboard() {
   }
   const handleSignout=()=>{
     localStorage.removeItem('token')
+    localStorage.removeItem('PrID')
+    localStorage.removeItem('taskId')
     navigate('/')
   }
 
@@ -40,7 +42,7 @@ function Dashboard() {
           <button onClick={handleSignout} className='mt-3 py-2 mr-10 md:mr-36 text-xl font-semibold bg-[#8AAAE5] rounded-2xl px-2 text-white  hover:scale-105 transition ease-linear duration-300'>Signout</button>
           </div>
           <div className='h-screen flex justify-center '>
-              <div className='bg-[#8AAAE5] h-5/6  w-5/6 rounded-2xl'>
+              <div className='bg-[#8AAAE5] md:h-5/6 h-4/5 w-11/12  md:w-5/6 rounded-2xl'>
 
                     <div className='relative ' onClick={hanldeCreateProjectClick}>
                       <div className='absolute right-3  md:right-6 flex items-center mt-4 mr-4 cursor-pointer hover:scale-105 transition ease-linear duration-300 border-2 b-white p-1 px-2 rounded-xl'>

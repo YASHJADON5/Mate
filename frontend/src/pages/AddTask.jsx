@@ -129,10 +129,10 @@ const handleBack=()=>{
             
             <div className='mt-4   border-2 b-white p-8 px-16'>  
               <label  className='text-white text-2xl font-semibold'>Title</label>        
-                      <textarea placeholder='Title' onChange={handleTitle} className=' block w-96 mt-2  min-h-20 p-4 font-normal text-xl outline-blue-400 ' name="Title" id="" ></textarea>
+                      <textarea placeholder='Title' onChange={handleTitle} className='rounded-md block w-96 mt-2  min-h-20 p-4 font-normal text-xl outline-blue-400 ' name="Title" id="" ></textarea>
               <label  className='text-white text-2xl font-semibold mt-8'>Description</label>        
   
-                      <textarea placeholder='Description' onChange={handleDescription} className='block mt-2 w-96 min-h-20  p-4 font-normal text-xl outline-blue-400'  name="Description" id=""></textarea>
+                      <textarea placeholder='Description' onChange={handleDescription} className='rounded-md block mt-2 w-96 min-h-20  p-4 font-normal text-xl outline-blue-400'  name="Description" id=""></textarea>
 
               <label  className='text-white text-2xl font-semibold mt-8' >Start Date</label> 
 
@@ -150,7 +150,7 @@ const handleBack=()=>{
 
               <label className='text-white text-2xl font-semibold mt-10'>Remarks</label>        
   
-              <textarea placeholder='Add remarks' onChange={handleRemarks} className='block mt-2 w-96 min-h-20  p-4 font-normal text-xl outline-blue-400'  name="remarks" id=""></textarea>
+              <textarea placeholder='Add remarks' onChange={handleRemarks} className='rounded-md block mt-2 w-96 min-h-20  p-4 font-normal text-xl outline-blue-400'  name="remarks" id=""></textarea>
 
                       
             <div onClick={handleCreateTask} className='mt-3 py-2 mx-auto text-xl font-semibold bg-[#8AAAE5] rounded-2xl px-2 text-white cursor-pointer text-center'>Create Task</div>

@@ -48,7 +48,7 @@ function CreateProject() {
             }
         }
         )
-        localStorage.removeItem('PrId')
+
         navigate('/dashboard')
     }
     catch(err){
@@ -85,12 +85,12 @@ function CreateProject() {
        
        <div className='flex w-screen h-screen  justify-center'>
             
-          <div className='mt-36'>  
+          <div className='md:mt-36 mt-16'>  
             <label  className='text-white text-2xl font-semibold'>Title</label>        
-                    <textarea placeholder='Title' onChange={handleTitle} className=' block w-96 mt-2  min-h-20 p-4 font-normal text-xl outline-blue-400 ' name="Title" id="" ></textarea>
+                    <textarea placeholder='Title' onChange={handleTitle} className='rounded-md block w-96 mt-2  min-h-20 p-4 font-normal text-xl outline-blue-400 ' name="Title" id="" ></textarea>
             <label  className='text-white text-2xl font-semibold mt-8'>Description</label>        
 
-                    <textarea placeholder='Description' onChange={handleDescription} className='block mt-2 w-96 min-h-60  p-4 font-normal text-xl outline-blue-400'  name="Description" id=""></textarea>
+                    <textarea placeholder='Description' onChange={handleDescription} className='rounded-md block mt-2 w-96 min-h-60  p-4 font-normal text-xl outline-blue-400'  name="Description" id=""></textarea>
                     
           <div onClick={handleCreateProject} className='mt-3 py-2 mx-auto text-xl font-semibold bg-[#8AAAE5] rounded-2xl px-2 text-white cursor-pointer text-center'>Add Project</div>
 

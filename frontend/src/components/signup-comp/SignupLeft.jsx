@@ -135,12 +135,13 @@ function SignupLeft({setLoading}) {
                   password:signUpInputs.password         
         })
         
-        localStorage.setItem('token',response.data.jwt);
+        localStorage.setItem('token',response.data.token);
+        setLoading(false)
+        navigate('/dashboard');
 
-        localStorage.setItem('username',response.data.name)
                  
      
-        navigate('/dashboard')
+        
        
         
          

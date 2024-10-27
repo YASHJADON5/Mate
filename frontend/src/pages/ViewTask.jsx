@@ -54,36 +54,36 @@ function ViewTask() {
     setTask({ ...task, status: e.target.value });
   };
 
-  const handleUpdateTask = async() => {
+  // const handleUpdateTask = async() => {
      
-    try{
-      const token= localStorage.getItem('token')
-      setLoading(true)
+  //   try{
+  //     const token= localStorage.getItem('token')
+  //     setLoading(true)
 
-      const response= await axios.put(`${base_url}/api/v1/task/updateone`,{
-        id:localStorage.getItem('taskId'),
-        title: task.title,
-        description: task.description,
-        status: task.status,
-        remarks: task.remarks
+  //     const response= await axios.put(`${base_url}/api/v1/task/updateone`,{
+  //       id:localStorage.getItem('taskId'),
+  //       title: task.title,
+  //       description: task.description,
+  //       status: task.status,
+  //       remarks: task.remarks
 
-      },{
-        headers:{
-          "authorization":`Bearer ${token}`
-        }
-      })
-      localStorage.removeItem('PrId')
-      navigate('/dashboard')
+  //     },{
+  //       headers:{
+  //         "authorization":`Bearer ${token}`
+  //       }
+  //     })
+  //     localStorage.removeItem('PrId')
+  //     navigate('/dashboard')
 
-    }
-    catch(err){
-      console.log(err)
-    }
-    finally{
-      setLoading(false)
-    }
+  //   }
+  //   catch(err){
+  //     console.log(err)
+  //   }
+  //   finally{
+  //     setLoading(false)
+  //   }
        
-  };
+  // };
 
   const handleNewRemarks= (e)=>{
     setNewRemarks(e.target.value)
@@ -124,6 +124,7 @@ function ViewTask() {
   const handleDelete=async()=>{
 
     try{
+      setLoading(true);
       const token= localStorage.getItem('token')
         
       const response= await axios.delete(`${base_url}/api/v1/task/deletetask/${id}`,{
@@ -133,9 +134,11 @@ function ViewTask() {
       })
       console.log(response.data)
       localStorage.removeItem('taskId')
+      setLoading(false)
       if(response.data.msg==="deleted successfully"){
         navigate('/projects')
       }
+      
 
 
      }
@@ -146,51 +149,45 @@ function ViewTask() {
     
   }
   console.log(initialStatus, task.status)
-  const handleUpdateTaskForUserSpecificTask=()=>{
-       
-    if(newRemarks===""){
-      alert('Add remark to update status')
+ 
+  const handleUpdateTaskForUserSpecificTask = () => {
+    if (newRemarks === "") {
+      alert('Add remark to update status');
       return;
     }
-    const updateTask=async()=>{
-      setLoading(true)
+    const updateTask = async () => {
+      setLoading(true); 
       console.log("newRemarks:", newRemarks);
 
-      try{
-        const token= localStorage.getItem('token')
-
-        const response= await axios.post(`${base_url}/api/v1/task/updateuserspecifictask`,{
-          id:id,
-          title:task.title,
-          description:task.description,
-          status:task.status,
-          remarks:newRemarks
-        },{
-          headers:{
-            "authorization":`Bearer ${token}`
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.post(`${base_url}/api/v1/task/updateuserspecifictask`, {
+          id: id,
+          title: task.title,
+          description: task.description,
+          status: task.status,
+          remarks: newRemarks
+        }, {
+          headers: {
+            "authorization": `Bearer ${token}`
           }
-        })
+        });
 
-        if(page==="userSpecifictasks"){
-          navigate('/taskforuser')
+        if (page === "userSpecifictasks") {
+          navigate('/taskforuser');
+        } else {
+          navigate('/addtaskprojectupdate');
         }
-        else{
-          navigate('/addtaskprojectupdate')
-        }
-
+      } catch (err) {
+        console.error(err);
+        setErrorMessage("Failed to update task."); 
+      } finally {
+        setLoading(false); 
       }
-      catch(err){
-
-      }
-      finally{
-        setLoading(false)
-      }
-
     }
 
-    updateTask()
-
-  }
+    updateTask();
+  };
   console.log(task)
 
   if (loading) {
@@ -221,7 +218,7 @@ function ViewTask() {
           <textarea
             readOnly={page === "userSpecifictasks"}
             onChange={handleTitle}
-            className='block w-full mt-2 min-h-20 p-4 font-normal text-xl outline-blue-400'
+            className='rounded-md block w-full mt-2 min-h-20 p-4 font-normal text-xl outline-blue-400'
             value={task.title}
             name="Title"
           ></textarea>
@@ -230,7 +227,7 @@ function ViewTask() {
           <textarea
             readOnly={page === "userSpecifictasks"}
             onChange={handleDescription}
-            className='block mt-2 w-full min-h-20 p-4 font-normal text-xl outline-blue-400'
+            className='rounded-md block mt-2 w-full min-h-20 p-4 font-normal text-xl outline-blue-400'
             value={task.description}
             name="Description"
           ></textarea>
@@ -254,7 +251,7 @@ function ViewTask() {
             
             value={task.remarks}
             onChange={handleRemarks}
-            className='block mt-2 w-full min-h-30 p-4 font-normal text-xl outline-blue-400'
+            className='rounded-md block mt-2 w-full min-h-30 p-4 font-normal text-xl outline-blue-400'
             name="remarks"
           ></textarea>}
 
@@ -277,7 +274,7 @@ function ViewTask() {
     placeholder='Add new remarks'
       onChange={handleNewRemarks}
       value={newRemarks}
-      className='block mt-2 w-full min-h-20 p-4 font-normal text-xl outline-blue-400'
+      className='rounded-md block mt-2 w-full min-h-20 p-4 font-normal text-xl outline-blue-400'
       name="remarks"
     ></textarea>
   

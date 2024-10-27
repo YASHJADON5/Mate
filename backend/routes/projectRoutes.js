@@ -33,7 +33,7 @@ projectRouter.post('/createproject',auth,async(req,res)=>{
 
         // const finalDate= `${month} ${day}, ${year} `
 
-         console.log(req.id);
+        
         const result = await project.create({
             title:req.body.title,
             description:req.body.description,
