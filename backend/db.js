@@ -1,19 +1,13 @@
 const mongoose= require("mongoose");
 
-
-function connectMongoose() {
-    mongoose.connect(process.env.Mongo_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        serverSelectionTimeoutMS: 20000 // 20 seconds
-    })
-    .then(() => {
-        console.log("MongoDB connection established successfully");
-    })
-    .catch((err) => {
-        console.error("Failed in connecting with MongoDB:", err);
-    });
-}
+const connectMongoose = async () => {
+    try {
+        await mongoose.connect(process.env.Mongo_URL);
+        console.log("Connected to MongoDB");
+    } catch (error) {
+        console.error("Failed in connecting with MongoDB:", error);
+    }
+};
 
 
 const userSchema = mongoose.Schema({
