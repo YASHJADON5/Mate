@@ -87,7 +87,7 @@ const handleCreateTask=async()=>{
       }
     })
 
-    navigate('/dashboard')
+    navigate('/addtaskprojectupdate')
 
   }
   catch(err){
@@ -134,9 +134,8 @@ const handleBack=()=>{
   
                       <textarea placeholder='Description' onChange={handleDescription} className='rounded-md block mt-2 w-96 min-h-20  p-4 font-normal text-xl outline-blue-400'  name="Description" id=""></textarea>
 
-              <label  className='text-white text-2xl font-semibold mt-8' >Start Date</label> 
+          
 
-              {/* <input placeholder='01-01-2024' onChange={handleDate} type="text" className='w-96 block h-10 p-4'/>      */}
               <label className='text-white text-2xl font-semibold mt-8'>Status</label>
               <select onChange={handleStatusChange} className='mt-2 block w-96 p-4 bg-[#8AAAE5] border border-blue-400 text-white rounded-lg outline-none focus:ring focus:ring-blue-400'>
                   <option value="Not Started">Not Started</option>
